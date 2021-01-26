@@ -1,0 +1,39 @@
+{% extends 'missionheader.html' %}                                                                                                                                                                                 
+                                                                                                                                                                                                            
+{% block content %}                                                                                                                                                                                         
+<style>                                                                                                                                                                                                     
+    #overivew > li {                                                                                                                                                                                        
+        padding-left:20px;                                                                                                                                                                                  
+    }                                                                                                                                                                                                       
+    .field-name{                                                                                                                                                                                            
+        font-weight: bold;                                                                                                                                                                                  
+    }                                                                                                                                                                                                       
+    .row{                                                                                                                                                                                                   
+        padding-top:20px;                                                                                                                                                                                   
+    }                                                                                                                                                                                                       
+</style>                                                                                                                                                                                                    
+<div class="container">                                                                                                                                                                                     
+    <div class="row">
+        <div class="col text-center">
+            <h2>My Missions</h2>
+        </div>
+    </div>                                                                                                                              
+    <div class="row">                                                                                                                                                                                       
+        <div class="col-sm-3"></div>                                                                                                                                                                            
+        <div class="col">                                                                                                                                                                                       
+            {% for mission in managedmissions %}                                                                                                                                                                         
+            <hr>                                                                                                                                                                                                
+            <h5>Mission: {{ mission.Mission_ID }}</h5>                                                                                                                                                             
+            <ul class="overview" style="list-style:none;">                                                                                                                                                      
+              <li>                                                                                                                                                                                              
+                <span class="field-name">Status :</span>                                                                                                                                                     
+                <span class="field-value">{{ mission.Mission_Status }}</span>                                                                                                                                        
+              </li>                                                                                                                                                                                             
+            </ul>                                                                                                                                                                                               
+            <a href="{{url_for('.allocateStuff', missionid=mission.Mission_ID)}}" class="btn btn-secondary btn-sm">View Mission Info</a>                                                                               
+            {% endfor %}                                                                                                                                                                                        
+        </div>                                                                                                                                                                                                  
+        <div class="col-sm-3"></div>                                                                                                                                                                            
+    </div>                                                                                                                                                                                                      
+</div>                                                                                                                                                                                                      
+{% endblock %}

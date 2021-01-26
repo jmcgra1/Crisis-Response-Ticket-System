@@ -1,0 +1,78 @@
+<html lang="en">                                                                                                                                                                                                                                
+  <head>                                                                                                                                                                                                                                        
+    <!-- Required meta tags -->                                                                                                                                                                                                                 
+    <meta charset="utf-8">                                                                                                                                                                                                                      
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">                                                                                                                                                      
+                                                                                                                                                                                                                                                
+    <!-- Bootstrap CSS -->                                                                                                                                                                                                                      
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">                            
+    <link rel="icon" href="data:;base64,iVBORw0KGgo="> 
+    <title>Crisis Response System</title> 
+  </head>
+  <body>
+    {% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <img src="{{url_for('static', filename='teamcloudlogo_small.jpg')}}">
+            </div>
+        </div>                     
+        <div class="row">
+            <div class="col text-center"><h2>Crisis Response System</h2></div>
+        </div>                     
+        <div class="row">
+            <div class="col text-center"><h4>Log-In</h4></div>
+        </div>                     
+        <div class="row">                                                                              
+        <div class="col-sm-3"></div>                                                                   
+        <div class="col">                                                                              
+            <form action="" method="POST" novalidate>
+                {{ form.hidden_tag() }}
+                <div class="form-row align-items-center">
+                    <div class="col text-center">
+                        {{ form.username.label }}
+                        {{ form.username(size=20)}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col text-center">
+                        {% for error in form.username.errors %}
+                        <span style="color:red; font-size:xx-small;">[{{ error }}] </span>  
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-row">                                                                 
+                    <div class="col text-center">                                                      
+                        {{ form.password.label }}
+                        {{ form.password }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col text-center">
+                        {% for error in form.password.errors %}
+                        <span style="color:red; font-size:xx-small;">[{{ error }}] </span>  
+                        {% endfor %}
+                    </div>
+                </div>                                                                          
+                <hr>                                                                             
+                <div class="form_row">                                                                 
+                    <div class="col text-center">{{ form.submit() }}</div>                             
+                </div>                                                                                 
+            </form>                                                                                    
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+        </div>                                                                                         
+        <div class="col-sm-3"></div>                                                                   
+    </div>                                                                                             
+    </div>                                                                                             
+    {% endblock %}   
+  </body>
+</html>
+

@@ -1,0 +1,51 @@
+<html lang="en">                                                                                                                                                                                                                    
+  <head>                                                                                                                                                                                                                            
+    <!-- Required meta tags -->                                                                                                                                                                                                     
+    <meta charset="utf-8">                                                                                                                                                                                                          
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">                                                                                                                                          
+                                                                                                                                                                                                                                    
+    <!-- Bootstrap CSS -->                                                                                                                                                                                                          
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">                
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <title>Crisis Response System</title>                                                                                                                                                                                           
+    </head>                                                                                                                                                                                                                         
+    <body>                                                                                                                                                                                                                          
+    <style>                                                                                           
+        small > a {                                                                                   
+            text-decoration:none;                                                                     
+            color:black;                                                                              
+            padding-left:10px;                                                                        
+        }                                                                                             
+        small > a:hover{                                                                              
+            color:red;                                                                                
+        }                                                                                             
+      </style>                                                                                        
+      {% block nav %}                                                                                 
+      <nav class="navbar navbar-expand-sm navbar-dark" style="background-color:#4e6d8a;">             
+            <div class="navbar-brand">                                                                
+                <h5> {{ return_role() }} </h5>                                                        
+                <h6>User: {{ return_username() }}                                                     
+                    <small>                
+                        <a href="{{url_for('login.index')}}">Logout</a>                                                        
+                    </small>                                                                          
+                </h6>                                                                                 
+            </div> 
+            <ul class="navbar-nav ml-auto">                                                                                                                                                                                         
+                <li {% if request.path == url_for('.home') %}class="active"{% endif %}>                                                                                                                                             
+                    <a class="nav-link" href="{{url_for('.home')}}">Missions</a>                                                                                                                                                 
+                </li>                                                                                                                                                                                                               
+            </ul>                                                                                                                                                                                                                   
+      </nav>                                                                                                                                                                                                                        
+      {% endblock nav %}                                                                                                                                                                                                            
+      {% with messages = get_flashed_messages() %}                                                                                                                                                                                  
+      {% if messages %}                                                                                                                                                                                                             
+      <ul>                                                                                                                                                                                                                          
+        {% for message in messages %}                                                                                                                                                                                               
+        <li>{{ message }}</li>                                                                                                                                                                                                      
+        {% endfor %}                                                                                                                                                                                                                
+      </ul>                                                                                                                                                                                                                         
+      {% endif %}                                                                                                                                                                                                                   
+      {% endwith %}                                                                                                                                                                                                                 
+      {% block content %}{% endblock %}                                                                                                                                                                                             
+    </body>                                                                                                                                                                                                                         
+</html>   

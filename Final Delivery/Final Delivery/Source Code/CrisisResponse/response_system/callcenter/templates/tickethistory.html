@@ -1,0 +1,43 @@
+{% extends 'header.html' %}
+
+{% block content %}
+<style>
+    #overivew > li {
+        padding-left:20px;
+    }
+    .field-name{
+        font-weight: bold;
+    }
+    .row{
+        padding-top:20px;
+    }
+</style>
+<div class="container">
+    <div class="row"><div class="col text-center"><h2>Tickets</h2></div></div>
+    <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col">
+        {% for ticket in tickets %}
+        <hr>
+        <h5>Ticket: {{ ticket.Ticket_ID }}</h5>
+        <ul class="overview" style="list-style:none;">
+          <li>
+            <span class="field-name">Event type:</span>
+            <span class="field-value">{{ ticket.Event_Type }}</span>
+          </li>
+          <li>
+            <span class="field-name">Current status:</span>
+            <span class="field-value">{{ ticket.Status }}</span>
+          </li>
+          <li>
+            <span class="field-name">Comments:</span>
+            <span class="field-value">{{ ticket.Comments }}</span>
+          </li>
+        </ul>
+        <a href="{{url_for('.editTicket', ticketid=ticket.Ticket_ID)}}" class="btn btn-secondary btn-sm">Edit Ticket Info</a>
+        {% endfor %}
+    </div>
+    <div class="col-sm-3"></div>
+</div>
+</div>
+{% endblock %}

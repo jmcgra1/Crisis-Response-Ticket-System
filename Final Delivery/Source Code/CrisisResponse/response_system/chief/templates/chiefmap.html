@@ -1,0 +1,24 @@
+{% extends 'chiefheader.html' %}
+
+{% block content %}
+<div class="container">                                                                          
+    <div class="row"><div class="col text-center"><h1>Overview</h1></div></div>                   
+    <div class="row">                                                                            
+        <div class="col text-center">
+            <h2>Event Map</h2>
+               <script type='text/javascript' src='https://prod-useast-b.online.tableau.com/javascripts/api/viz_v1.js'></script>
+               <div class='tableauPlaceholder' style='width: 1138px; height: 694px;'>
+                   <object class='tableauViz' width='1138' height='694' style='display:none;'>
+                       <param name='host_url' value='https%3A%2F%2Fprod-useast-b.online.tableau.com%2F' /> 
+                       <param name='embed_code_version' value='3' /> 
+                       <param name='site_root' value='&#47;t&#47;crts' />
+                       <param name='name' value='CRTS&#47;Tickets' />
+                       <param name='tabs' value='yes' />
+                       <param name='toolbar' value='yes' />
+                       <param name='showAppBanner' value='false' />
+                   </object>
+               </div> 
+        </div> 
+    </div>
+</div>                                                                                           
+{% endblock %}   

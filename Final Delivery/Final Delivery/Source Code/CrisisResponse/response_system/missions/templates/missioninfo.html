@@ -1,0 +1,87 @@
+{% extends 'missionheader.html' %}
+{% block content %}
+<style>
+    #overivew > li {
+        padding-left:20px;
+    }
+    .field-name{
+        font-weight: bold;
+    }
+    .row{
+        padding-top:20px;
+    }
+    .form-row{
+        padding-top:20px;
+    }
+</style>
+<div class="container">
+    <div class="text-center"><h2>Mission {{ mission }}</h2></div>
+    <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col">
+        {% for ticket in tickets %}
+        <hr>
+        <h5>Ticket: {{ ticket.Ticket_ID }}</h5>
+        <ul class="overview" style="list-style:none;">
+          <li>
+            <span class="field-name">Event type:</span>
+            <span class="field-value">{{ ticket.Event_Type }}</span>
+          </li>
+          <li>
+            <span class="field-name">Current status:</span>
+            <span class="field-value">{{ ticket.Status }}</span>
+          </li>
+          <li>
+            <span class="field-name">Comments:</span>
+            <span class="field-value">{{ ticket.Comments }}</span>
+          </li>
+        </ul>
+        {% endfor %}
+    </div>
+    {% if status=="In Progress" %}
+        <div class="row">
+            <div class="col text-center">
+                <a href="{{url_for('.updateStatus', missionid=mission)}}" class="btn btn-secondary btn-sm">Update Status to Completed</a> 
+            </div>
+        </div>
+    {% endif %}
+    {% if status=="Assigned" %}
+        <div class="col">
+            <div class="text-center"><h3>Get Resources</h3></div>
+            <form action="" method="POST" novalidate>
+                {{ form.hidden_tag() }}
+                <div class="form-row">
+                    <div class="col-sm-4">{{form.avail_agents.label}}</div>
+                    <div class="col">{{form.avail_agents(size=5)}}</div>
+                </div>
+                <div class="form-row">
+                    <div class="col-sm-4">{{form.vehicles_amb.label}}</div>
+                    <div class="col">{{form.vehicles_amb(size=5)}}</div>
+                </div>
+                <div class="form-row">
+                    <div class="col-sm-4">{{form.vehicles_fire.label }}</div>
+                    <div class="col">{{form.vehicles_fire(size=5)}}</div>
+                </div>
+                <div class="form-row">
+                    <div class="col-sm-4">{{form.vehicles_heli.label }}</div>
+                    <div class="col">{{form.vehicles_heli(size=2)}}</div>
+                </div>
+                <div class="form-row">
+                    <div class="col-sm-4">{{form.vehicles_pol.label }}</div>
+                    <div class="col">{{form.vehicles_pol(size=5)}}</div>
+                </div>
+                <div class="form-row">
+                    <div class="col-sm-4">{{form.vehicles_serv.label }}</div>
+                    <div class="col">{{form.vehicles_serv(size=5)}}</div>
+                </div>
+                <div class="form-row">
+                    <div class="col text-center">{{form.submit()}}</div>
+                </div>
+             </form>
+        {% endif %}
+        </div>
+    <div class="col-sm-2">
+    </div>
+</div>
+</div>
+{% endblock %}
